@@ -150,7 +150,7 @@ func sanitizeValue(value interface{}) (string, error) {
 	return str, nil
 }
 
-// getCleanEnvironment returns a minimal set of necessary environment variables
+// getCleanEnvironment returns a minimal set of environment variables necessary for safe command execution across different operating systems. It includes essential system paths and optionally adds the SystemRoot variable for Windows systems. The returned slice contains only the required environment variables, helping to maintain a clean and secure execution context.
 func getCleanEnvironment() []string {
 	// Provide only necessary environment variables
 	env := []string{
@@ -167,7 +167,7 @@ func getCleanEnvironment() []string {
 	return env
 }
 
-// getNoteValueByName retrieves a value from a Note by field name using reflection
+// If the field is not found or cannot be interfaced, it returns nil.
 func getNoteValueByName(note *datastore.Note, paramName string) interface{} {
 	val := reflect.ValueOf(*note)
 	fieldVal := val.FieldByName(paramName)

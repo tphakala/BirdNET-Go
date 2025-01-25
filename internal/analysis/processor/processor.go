@@ -431,7 +431,7 @@ func (p *Processor) pendingDetectionsFlusher() {
 	}()
 }
 
-// Helper function to check if a slice contains a string (case-insensitive)
+// It returns true if the item is found in the slice, otherwise false.
 func contains(slice []string, item string) bool {
 	for _, s := range slice {
 		if strings.EqualFold(s, item) {
@@ -479,7 +479,7 @@ func (p *Processor) getActionsForItem(detection *Detections) []Action {
 	return p.getDefaultActions(detection)
 }
 
-// Helper function to parse command parameters
+// If a parameter is not found in the detection note, its value will be nil.
 func parseCommandParams(params []string, detection *Detections) map[string]interface{} {
 	commandParams := make(map[string]interface{})
 	for _, param := range params {
